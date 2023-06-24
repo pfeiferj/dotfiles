@@ -1,18 +1,20 @@
 # pfeiferj dot files
 Managed using chezmoi.
+
+**Chezmoi already installed**
 ```bash
-# Chezmoi already installed
 chezmoi init --apply pfeiferj
-
-# ssh:
-
+```
+ssh:
+```bash
 chezmoi init --apply git@github.com:pfeiferj/dotfiles.git
 ```
+
+**Chezmoi not installed**
 ```bash
-# Chezmoi not installed
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply pfeiferj
-
-# ssh:
-
+```
+ssh:
+```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply git@github.com:pfeiferj/dotfiles.git
 ```
