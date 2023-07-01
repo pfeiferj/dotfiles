@@ -1,0 +1,10 @@
+[user]
+	email = jacob@pfeifer.dev
+	name = Jacob Pfeifer
+	signingkey = 747D902495DC0F1C
+[pull]
+	rebase = false
+[commit]
+	gpgsign = true
+[init]
+	templatedir = ~/.config/git/templates
