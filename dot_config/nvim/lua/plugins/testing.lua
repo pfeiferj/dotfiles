@@ -32,6 +32,7 @@ return {
       require("neotest").setup({
         adapters = {
           require("neotest-rspec")({
+            root_files = { "Gemfile" },
             rspec_cmd = function()
               return vim.tbl_flatten({
                 "bundle",
@@ -41,7 +42,7 @@ return {
             end
           }),
           require "neotest-vim-test" {
-            ignore_file_types = { "vim", "lua", "rb" },
+            ignore_file_types = { "vim", "lua", "ruby" },
           },
         }
       })
