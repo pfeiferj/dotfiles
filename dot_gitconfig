@@ -8,3 +8,5 @@
 	gpgsign = true
 [init]
 	templatedir = ~/.config/git/templates
+[core]
+	excludesfile = /Users/jacob/.config/git/gitignore
