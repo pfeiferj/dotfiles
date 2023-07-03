@@ -39,3 +39,5 @@ export PATH=$PATH:~/.local/bin
 
 touch -a "$HOME/.local.zshrc"
 source "$HOME/.local.zshrc"
+
+alias ssh="TERM=xterm-256color ssh"
