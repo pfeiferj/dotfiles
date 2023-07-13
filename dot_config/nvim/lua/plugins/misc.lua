@@ -1,8 +1,8 @@
 return {
   'gennaro-tedesco/nvim-peekup',
   {
-    lazy = false,
-    'gpanders/editorconfig.nvim',
+    'stevearc/dressing.nvim',
+    opts = {},
   },
   'dsummersl/gundo.vim',
 }
