@@ -5,4 +5,5 @@ return {
     opts = {},
   },
   'dsummersl/gundo.vim',
+  'rcarriga/nvim-notify',
 }
