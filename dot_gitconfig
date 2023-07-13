@@ -10,3 +10,5 @@
 	templatedir = ~/.config/git/templates
 [core]
 	excludesfile = ~/.config/git/gitignore
+[push]
+  autoSetupRemote = true
