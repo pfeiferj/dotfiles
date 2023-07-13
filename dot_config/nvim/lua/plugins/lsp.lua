@@ -88,8 +88,6 @@ return {
       'rafamadriz/friendly-snippets', -- Optional
       'nvim-lua/plenary.nvim',
 
-      'jay-babu/mason-null-ls.nvim',
-      "jose-elias-alvarez/null-ls.nvim",
     },
     lazy = false,
     config = function()
@@ -124,9 +122,6 @@ return {
         },
         servers = {
           ['solargraph'] = {'ruby'},
-          -- if you have a working setup with null-ls
-          -- you can specify filetypes it can format.
-          -- ['null-ls'] = {'javascript', 'typescript'},
         }
       })
 
@@ -162,43 +157,6 @@ return {
           -- Navigate between snippet placeholder
           ['<C-f>'] = cmp_action.luasnip_jump_forward(),
           ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-        }
-      })
-
-      require("mason-null-ls").setup({
-        ensure_installed = { "stylua", "jq", "cspell", "prettier" }
-      })
-
-      local null_ls = require('null-ls')
-      local null_opts = lsp.build_options('null-ls', {})
-
-      null_ls.setup({
-        on_attach = function(client, bufnr)
-          null_opts.on_attach(client, bufnr)
-          ---
-          -- you can add other stuff here....
-          ---
-        end,
-        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", "Makefile", ".git", "Gemfile"),
-        sources = {
-          -- Replace these with the tools you have installed
-          null_ls.builtins.formatting.prettier,
-          null_ls.builtins.diagnostics.eslint,
-
-          null_ls.builtins.formatting.stylua,
-
-          null_ls.builtins.diagnostics.cspell.with({
-            filetypes = { "ruby", "erb", "e-ruby", "yaml", "markdown", "json" },
-          }),
-          null_ls.builtins.code_actions.cspell.with({
-            filetypes = { "ruby", "e-ruby", "yaml", "markdown", "json", "erb" },
-          }),
-
-          null_ls.builtins.diagnostics.rubocop,
-          null_ls.builtins.formatting.rubocop,
-
-          null_ls.builtins.diagnostics.erb_lint,
-          null_ls.builtins.formatting.erb_lint,
         }
       })
     end,
