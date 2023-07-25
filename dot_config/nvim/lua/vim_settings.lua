@@ -56,3 +56,18 @@ hi GitSignsAddNr ctermfg=34 ctermbg=none guifg=#50C878 guibg=none
 hi GitSignsChangeNr ctermfg=31 ctermbg=none guifg=#00ccdd guibg=none
 hi GitSignsDeleteNr ctermfg=160 ctermbg=none guifg=#FA5F55 guibg=none
 ]])
+
+
+vim.cmd([[
+let g:clipboard = {
+  \   'name': 'myClipboard',
+          \   'copy': {
+          \      '+': ['pbcopy'],
+          \      '*': ['pbcopy'],
+          \    },
+          \   'paste': {
+          \      '+': ['pbpaste'],
+          \      '*': ['pbpaste'],
+          \   }
+  \ }
+]])
