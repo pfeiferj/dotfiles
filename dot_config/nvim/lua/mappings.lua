@@ -77,6 +77,7 @@ vim.api.nvim_set_keymap("n", "gt",             ":lua require('neotest').output.o
 vim.api.nvim_set_keymap("i", "<C-n>",      "<C-x><C-o>", { noremap = true, desc = "Open completion" })
 
 vim.api.nvim_set_keymap("n", "gO",      ":Telescope lsp_document_symbols<CR>", { noremap = true, desc = "Open symbol outline" })
+vim.api.nvim_set_keymap("n", "gW",      ":Telescope lsp_workspace_symbols<CR>", { noremap = true, desc = "Open workspace symbol outline" })
 
 vim.api.nvim_set_keymap("n", "<space>h",      ":Hurl<CR>", { noremap = true, desc = "Run hurl" })
 

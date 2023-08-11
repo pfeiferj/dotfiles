@@ -115,16 +115,6 @@ return {
         root_dir = util.root_pattern("Gemfile"),
       })
 
-      lsp.format_on_save({
-        format_opts = {
-          async = false,
-          timeout_ms = 10000,
-        },
-        servers = {
-          ['solargraph'] = {'ruby'},
-        }
-      })
-
       lsp.setup()
       -- You need to setup `cmp` after lsp-zero
       local cmp = require('cmp')
