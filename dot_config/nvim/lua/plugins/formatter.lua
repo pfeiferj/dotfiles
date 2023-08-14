@@ -42,6 +42,23 @@ return {
               }
             end
           },
+          python = {
+            function()
+              return {
+                exe = "ruff",
+                args = {
+                  'check',
+                  '--force-exclude',
+                  '--quiet',
+                  '--fix-only',
+                },
+                stdin = false,
+              }
+            end
+          },
+          go = {
+            require("formatter.filetypes.go").gofmt,
+          },
           ["*"] = {
             require("formatter.filetypes.any").remove_trailing_whitespace
           }
@@ -52,6 +69,7 @@ return {
       autocmd!
       autocmd BufWritePost *.rb FormatWrite
       autocmd BufWritePost *.erb FormatWrite
+      autocmd BufWritePost *.go FormatWrite
       augroup END
       ]])
     end

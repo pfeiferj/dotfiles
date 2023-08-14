@@ -41,3 +41,7 @@ touch -a "$HOME/.local.zshrc"
 source "$HOME/.local.zshrc"
 
 alias ssh="TERM=xterm-256color ssh"
+
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+. ~/.asdf/plugins/golang/set-env.zsh
+export PATH="$PATH:$HOME/.asdf/installs/golang/1.21.0/packages/bin"
