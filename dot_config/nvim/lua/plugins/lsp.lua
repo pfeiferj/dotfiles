@@ -99,8 +99,10 @@ return {
       local lsp = require('lsp-zero').preset({
         name = 'minimal',
         set_lsp_keymaps = true,
-        manage_nvim_cmp = true,
         suggest_lsp_servers = true,
+        manage_nvim_cmp = {
+          set_extra_mappings = true,
+        }
       })
 
       lsp.on_attach(function(client, bufnr)
@@ -129,6 +131,10 @@ return {
       cmp.setup({
         sources = {
           { name = "copilot", group_index = 2 },
+          {name = 'nvim_lsp'},
+          {name = 'buffer'},
+          {name = 'path'},
+          {name = 'luasnip'},
         },
         mapping = {
           ["<Tab>"] = vim.schedule_wrap(function(fallback)
