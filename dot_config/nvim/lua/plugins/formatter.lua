@@ -26,6 +26,7 @@ return {
                   "--stderr",
                 },
                 stdin = true,
+                ignore_exitcode = true,
               }
             end
           },
@@ -39,6 +40,7 @@ return {
                   "--autocorrect",
                 },
                 stdin = false,
+                ignore_exitcode = true,
               }
             end
           },
