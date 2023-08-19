@@ -1,12 +1,16 @@
 return {
   {
     'pfeiferj/nvim-hurl',
-    dependencies = {"MunifTanjim/nui.nvim"},
-    lazy = false,
-    config = function() require("hurl").setup() end,
+    dependencies = {'MunifTanjim/nui.nvim'},
+    event = 'VeryLazy',
+    config = function() require('hurl').setup() end,
   },
   {
     'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+    },
+    event = 'VeryLazy',
     config = function()
       vim.cmd([[
         set foldmethod=expr
@@ -15,37 +19,43 @@ return {
       ]])
 
       require 'nvim-treesitter.configs'.setup {
-        ensure_installed = { "lua", "rust", "go", "python", "javascript", "typescript", "json", "bash",
-          "dockerfile", "html", "css", "tsx", "vim", "yaml", "elixir", "gomod", "jq", "ruby",
+        ensure_installed = { 'lua', 'rust', 'go', 'python', 'javascript', 'typescript', 'json', 'bash',
+          'dockerfile', 'html', 'css', 'tsx', 'vim', 'yaml', 'elixir', 'gomod', 'jq', 'ruby',
         },
         --"hurl", "x12" }, -- "all" or a list of languages
         sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
         highlight = {
           enable = true, -- false will disable the whole extension
-          additional_vim_regex_highlighting = { "markdown" },
+          additional_vim_regex_highlighting = { 'markdown' },
         },
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = "gnn",
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm",
+            init_selection = 'gnn',
+            node_incremental = 'grn',
+            scope_incremental = 'grc',
+            node_decremental = 'grm',
           },
         },
         indent = {
           enable = true
-        }
+        },
+        context_commentstring = {
+          enable = true,
+        },
       }
     end
   },
   {
     'nvim-treesitter/playground',
     dependencies = {
-      "nvim-treesitter/nvim-treesitter"
+      'nvim-treesitter/nvim-treesitter'
+    },
+    cmd = {
+      'TSPlaygroundToggle',
     },
     config = function()
-      require "nvim-treesitter.configs".setup {
+      require 'nvim-treesitter.configs'.setup {
         playground = {
           enable = true,
           disable = {},

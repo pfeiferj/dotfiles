@@ -4,26 +4,26 @@ return {
     event = {'BufWritePre', 'InsertLeave'},
     cmd = {'FormatWrite', 'Format'},
     config = function()
-      local util = require "formatter.util"
+      local util = require 'formatter.util'
 
       -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
-      require("formatter").setup {
+      require('formatter').setup {
         logging = true,
         log_level = vim.log.levels.WARN,
         filetype = {
           ruby = {
             function()
               return {
-                exe = "bundle",
+                exe = 'bundle',
                 args = {
-                  "exec",
-                  "rubocop",
-                  "--autocorrect",
-                  "--stdin",
+                  'exec',
+                  'rubocop',
+                  '--autocorrect',
+                  '--stdin',
                   util.escape_path(util.get_current_buffer_file_name()),
-                  "--format",
-                  "files",
-                  "--stderr",
+                  '--format',
+                  'files',
+                  '--stderr',
                 },
                 stdin = true,
                 ignore_exitcode = true,
@@ -33,11 +33,11 @@ return {
           eruby = {
             function()
               return {
-                exe = "bundle",
+                exe = 'bundle',
                 args = {
-                  "exec",
-                  "erblint",
-                  "--autocorrect",
+                  'exec',
+                  'erblint',
+                  '--autocorrect',
                 },
                 stdin = false,
                 ignore_exitcode = true,
@@ -47,7 +47,7 @@ return {
           python = {
             function()
               return {
-                exe = "ruff",
+                exe = 'ruff',
                 args = {
                   'check',
                   '--force-exclude',
@@ -59,10 +59,10 @@ return {
             end
           },
           go = {
-            require("formatter.filetypes.go").gofmt,
+            require('formatter.filetypes.go').gofmt,
           },
-          ["*"] = {
-            require("formatter.filetypes.any").remove_trailing_whitespace
+          ['*'] = {
+            require('formatter.filetypes.any').remove_trailing_whitespace
           }
         }
       }

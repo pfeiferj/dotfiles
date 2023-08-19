@@ -1,70 +1,58 @@
 return {
   {
     'folke/neodev.nvim',
+    ft = 'lua',
+  },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
     dependencies = {
-      "nvim-neotest/neotest",
+      'zbirenbaum/copilot-cmp',
     },
-    config = function()
-      require('neodev').setup({
-        library = { plugins = { "neotest" }, types = true },
-      })
-    end
-  },
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        panel = {
-          enabled = true,
-          auto_refresh = false,
-          keymap = {
-            jump_prev = "[[",
-            jump_next = "]]",
-            accept = "<CR>",
-            refresh = "gr",
-            open = "<M-CR>"
-          },
-          layout = {
-            position = "bottom", -- | top | left | right
-            ratio = 0.4
-          },
+    opts = {
+      panel = {
+        enabled = true,
+        auto_refresh = false,
+        keymap = {
+          jump_prev = '[[',
+          jump_next = ']]',
+          accept = '<CR>',
+          refresh = 'gr',
+          open = '<M-CR>'
         },
-        suggestion = {
-          enabled = true,
-          auto_trigger = false,
-          debounce = 75,
-          keymap = {
-            accept = "<M-l>",
-            accept_word = false,
-            accept_line = false,
-            next = "<M-]>",
-            prev = "<M-[>",
-            dismiss = "<C-]>",
-          },
+        layout = {
+          position = 'bottom', -- | top | left | right
+          ratio = 0.4
         },
-        filetypes = {
-          yaml = false,
-          markdown = false,
-          help = false,
-          gitcommit = false,
-          gitrebase = false,
-          hgcommit = false,
-          svn = false,
-          cvs = false,
-          ["."] = false,
+      },
+      suggestion = {
+        enabled = true,
+        auto_trigger = false,
+        debounce = 75,
+        keymap = {
+          accept = '<M-l>',
+          accept_word = false,
+          accept_line = false,
+          next = '<M-]>',
+          prev = '<M-[>',
+          dismiss = '<C-]>',
         },
-        copilot_node_command = 'node', -- Node.js version must be > 16.x
-        server_opts_overrides = {},
-      })
-    end,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    config = function()
-      require("copilot_cmp").setup()
-    end
+      },
+      filetypes = {
+        yaml = false,
+        markdown = false,
+        help = false,
+        gitcommit = false,
+        gitrebase = false,
+        hgcommit = false,
+        svn = false,
+        cvs = false,
+        ['.'] = false,
+      },
+      copilot_node_command = 'node', -- Node.js version must be > 16.x
+      server_opts_overrides = {},
+    },
   },
   {
     'VonHeikemen/lsp-zero.nvim',
@@ -89,7 +77,7 @@ return {
       'nvim-lua/plenary.nvim',
 
     },
-    lazy = false,
+    event = 'VeryLazy',
     config = function()
       require('mason').setup({
         log_level = vim.log.levels.ERROR
@@ -114,8 +102,21 @@ return {
 
       local util = require('lspconfig').util
       require('lspconfig').solargraph.setup({
-        root_dir = util.root_pattern("Gemfile"),
+        root_dir = util.root_pattern('Gemfile'),
       })
+
+      require('lspconfig').pylsp.setup {
+        settings = {
+          -- configure plugins in pylsp
+          pylsp = {
+            plugins = {
+              pycodestyle = {enabled = false},
+              pyflakes = {enabled = false},
+              pylint = {enabled = false},
+            },
+          },
+        },
+      }
 
       lsp.setup()
       -- You need to setup `cmp` after lsp-zero
@@ -123,21 +124,21 @@ return {
       local cmp_action = require('lsp-zero').cmp_action()
 
       local has_words_before = function()
-        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+        if vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then return false end
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+        return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match('^%s*$') == nil
       end
 
       cmp.setup({
         sources = {
-          { name = "copilot", group_index = 2 },
+          { name = 'copilot', group_index = 2 },
           {name = 'nvim_lsp'},
           {name = 'buffer'},
           {name = 'path'},
           {name = 'luasnip'},
         },
         mapping = {
-          ["<Tab>"] = vim.schedule_wrap(function(fallback)
+          ['<Tab>'] = vim.schedule_wrap(function(fallback)
             if cmp.visible() and has_words_before() then
               cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
             else

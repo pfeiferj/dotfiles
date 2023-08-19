@@ -1,10 +1,12 @@
 return {
-  'gennaro-tedesco/nvim-peekup',
+  {
+    'gennaro-tedesco/nvim-peekup',
+    event = 'VeryLazy',
+  },
   {
     'stevearc/dressing.nvim',
-    opts = {},
+    event = 'VeryLazy',
   },
-  'dsummersl/gundo.vim',
   'rcarriga/nvim-notify',
   {
     'lukas-reineke/indent-blankline.nvim',
@@ -13,5 +15,16 @@ return {
       show_current_context = true,
       show_current_context_start = false,
     },
+  },
+  {
+    'numToStr/Comment.nvim',
+    opts = {},
+    event = 'VeryLazy',
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = 'VeryLazy',
+    opts = {},
   },
 }
