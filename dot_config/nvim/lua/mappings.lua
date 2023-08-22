@@ -66,6 +66,10 @@ vim.api.nvim_set_keymap('i', '<C-n>',      '<C-x><C-o>', { noremap = true, desc 
 
 vim.api.nvim_set_keymap('n', '<space>h',      ':Hurl<CR>', { noremap = true, desc = 'Run hurl' })
 
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
 
 vim.cmd([[
 command Date execute "normal i<C-R>=strftime('%F')<CR><ESC>"
