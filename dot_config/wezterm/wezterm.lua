@@ -18,7 +18,7 @@ config.color_scheme = 'nightfox'
 config.hide_tab_bar_if_only_one_tab = true
 
 config.font = wezterm.font 'FiraCode Nerd Font'
-config.font_size = 17.0
+config.font_size = 16.0
 
 -- and finally, return the configuration to wezterm
 return config
