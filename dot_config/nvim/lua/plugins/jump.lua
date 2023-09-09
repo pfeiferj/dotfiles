@@ -7,6 +7,16 @@ return {
       search = {
         enabled = false,
       },
+      char = {
+        highlight = {
+          backdrop = false,
+          matches = false,
+          match = false,
+          current = false,
+          match = false,
+          label = false,
+        },
+      },
     },
   },
   -- stylua: ignore

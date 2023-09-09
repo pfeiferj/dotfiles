@@ -48,3 +48,5 @@ export PATH="$PATH:$HOME/.asdf/installs/golang/1.21.0/packages/bin"
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+export BROWSER=~/.local/share/bin/chrome.sh
