@@ -10,10 +10,14 @@ return {
   'rcarriga/nvim-notify',
   {
     'lukas-reineke/indent-blankline.nvim',
+    main = "ibl",
     event = 'BufRead',
     opts = {
-      show_current_context = true,
-      show_current_context_start = false,
+      scope = {
+        enabled = true,
+        show_start = false,
+        show_end = false,
+      },
     },
   },
   {
