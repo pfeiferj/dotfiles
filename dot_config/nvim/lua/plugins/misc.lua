@@ -31,4 +31,5 @@ return {
     event = 'VeryLazy',
     opts = {},
   },
+  'christoomey/vim-tmux-navigator'
 }
