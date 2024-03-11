@@ -6,10 +6,17 @@ return {
     config = function() require('hurl').setup() end,
   },
   {
+
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    config = function()
+      vim.g.skip_ts_context_commentstring_module = true
+      require('ts_context_commentstring').setup {
+        enable = true,
+      }
+    end,
+  },
+  {
     'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'JoosepAlviste/nvim-ts-context-commentstring',
-    },
     event = 'VeryLazy',
     config = function()
       vim.cmd([[
@@ -39,9 +46,6 @@ return {
         },
         indent = {
           enable = true
-        },
-        context_commentstring = {
-          enable = true,
         },
       }
     end

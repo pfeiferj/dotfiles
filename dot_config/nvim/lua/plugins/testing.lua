@@ -22,23 +22,27 @@ return {
     end,
   },
   {
-    'klen/nvim-test',
+    'vim-test/vim-test',
     opts = {},
+    dependencies = {
+      'preservim/vimux',
+    },
     keys = {
       {'<leader>t', '<cmd>TestNearest<cr>', noremap = true, desc = 'Run nearest test'},
-      {'<leader>T', '<cmd>TestFile<cr>', noremap = true, desc = 'Run tests for current file'}
+      {'<leader>T', '<cmd>TestFile<cr>', noremap = true, desc = 'Run tests for current file'},
+      {'<leader>a', '<cmd>TestSuite<cr>', noremap = true, desc = 'Run test suite'},
+      {'<leader>g', '<cmd>TestVisit<cr>', noremap = true, desc = 'Visit test'},
     },
     cmd = {
       'TestNearest',
       'TestFile',
-      'TestEdit',
-      'TestInfo',
+      'TestClass',
       'TestLast',
       'TestSuite',
       'TestVisit',
     },
     config = function()
-      require('nvim-test').setup()
+      vim.g['test#strategy'] = 'vimux'
     end
   },
 }

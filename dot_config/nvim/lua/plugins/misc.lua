@@ -5,7 +5,7 @@ return {
   },
   {
     'stevearc/dressing.nvim',
-    event = 'VeryLazy',
+    lazy = false,
   },
   'rcarriga/nvim-notify',
   {

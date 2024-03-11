@@ -1,79 +1,24 @@
 return {
   {
-    'mhartington/formatter.nvim',
-    event = {'BufWritePre', 'InsertLeave'},
-    cmd = {'FormatWrite', 'Format'},
+    'stevearc/conform.nvim',
     config = function()
-      local util = require 'formatter.util'
-
-      -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
-      require('formatter').setup {
-        logging = true,
-        log_level = vim.log.levels.WARN,
-        filetype = {
-          ruby = {
-            function()
-              return {
-                exe = 'bundle',
-                args = {
-                  'exec',
-                  'rubocop',
-                  '--autocorrect',
-                  '--stdin',
-                  util.escape_path(util.get_current_buffer_file_name()),
-                  '--format',
-                  'files',
-                  '--stderr',
-                },
-                stdin = true,
-                ignore_exitcode = true,
-              }
-            end
-          },
-          eruby = {
-            function()
-              return {
-                exe = 'bundle',
-                args = {
-                  'exec',
-                  'erblint',
-                  '--autocorrect',
-                },
-                stdin = false,
-                ignore_exitcode = true,
-              }
-            end
-          },
-          python = {
-            function()
-              return {
-                exe = 'ruff',
-                args = {
-                  'check',
-                  '--force-exclude',
-                  '--quiet',
-                  '--fix-only',
-                },
-                stdin = false,
-              }
-            end
-          },
-          go = {
-            require('formatter.filetypes.go').gofmt,
-          },
-          ['*'] = {
-            require('formatter.filetypes.any').remove_trailing_whitespace
-          }
-        }
+      require('conform').setup {
+        lsp_fallback = true,
+        formatters_by_ft = {
+          lua = { "stylua" },
+          -- Conform will run multiple formatters sequentially
+          python = { "isort", "yapf" },
+          -- Use a sub-list to run only the first available formatter
+          javascript = { { "prettierd", "prettier" } },
+          go = { "gofumpt" },
+          json = { "jq" },
+          templ = { "templ" },
+          zig = { "zigfmt" },
+          yaml = { "yamlfmt" },
+          markdown = { "mdfmt" },
+        },
       }
-      vim.cmd([[
-      augroup FormatAutogroup
-      autocmd!
-      autocmd BufWritePost *.rb FormatWrite
-      autocmd BufWritePost *.erb FormatWrite
-      autocmd BufWritePost *.go FormatWrite
-      augroup END
-      ]])
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end
   },
 }

@@ -42,9 +42,9 @@ vim.o.colorcolumn='120'
 vim.o.title=true
 
 vim.o.lazyredraw = true
-vim.diagnostic.config({
-  virtual_text = false,
-})
+--vim.diagnostic.config({
+--  virtual_text = false,
+--})
 
 vim.o.mousemoveevent = true
 
