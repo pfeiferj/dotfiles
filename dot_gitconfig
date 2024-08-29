@@ -1,7 +1,7 @@
 [user]
 	email = jacob@pfeifer.dev
 	name = Jacob Pfeifer
-	signingkey = 747D902495DC0F1C
+	signingkey = 360D5D62A33983B960CA7EDCF737060A9C340C3B
 [pull]
 	rebase = false
 [commit]
@@ -12,3 +12,8 @@
 	excludesfile = ~/.config/git/gitignore
 [push]
   autoSetupRemote = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
